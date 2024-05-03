@@ -13,10 +13,10 @@ RUN apt-get install -y openvpn \
                        iptables \
                        sed
 
-RUN wget -O openvpn.sh https://get.vpnsetup.net/ovpn
-RUN chmod +x openvpn.sh
+#RUN wget -O openvpn.sh https://get.vpnsetup.net/ovpn
+#RUN chmod +x openvpn.sh
 
-COPY entrypoint.sh .
+COPY entrypoint.sh openvpn.sh ./
 
 ENTRYPOINT [ "/app/entrypoint.sh" ]
 
