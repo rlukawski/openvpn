@@ -1,0 +1,17 @@
+version: '3.8'
+
+volumes:
+  openvpn:
+    external: false
+
+services:
+  openvpn:
+    image: test
+    privileged: true
+    build:
+      context: .
+      dockerfile: ./Dockerfile    
+    volumes:
+      - openvpn:/etc/openvpn
+    ports:
+      - "1194:1194/udp"
