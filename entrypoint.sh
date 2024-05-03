@@ -2,6 +2,7 @@
 
 if [ ! -f /etc/openvpn/server/server.conf ]; then
     /app/openvpn.sh --auto
+    sed -i '1s/^/#/' /etc/openvpn/server/server.conf
     cp /root/client.ovpn /etc/openvpn/client
 fi
 
