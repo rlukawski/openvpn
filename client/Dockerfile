@@ -1,0 +1,23 @@
+FROM arm64v8/debian:bookworm-slim
+
+WORKDIR /app
+
+RUN apt-get update
+RUN apt-get install -y openvpn
+#                        kmod \
+#                        apt-utils \
+#                        procps \
+#                        systemd \
+#                        net-tools \
+#                        iptables 
+
+# #RUN wget -O openvpn.sh https://get.vpnsetup.net/ovpn
+# #RUN chmod +x openvpn.sh
+
+COPY entrypoint.sh ./
+
+ENTRYPOINT [ "/app/entrypoint.sh" ]
+
+
+                    
+                    

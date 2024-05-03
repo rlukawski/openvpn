@@ -1,0 +1,17 @@
+version: '3.8'
+
+volumes:
+  config:
+    external: false
+
+services:
+  openvpn-client:
+    image: rlukawski/openvpn-client:latest
+    privileged: true
+    platform: linux/arm64
+    
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - /etc/openvpn/client:/etc/openvpn/client
