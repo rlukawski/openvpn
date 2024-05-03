@@ -1,6 +1,6 @@
-FROM debian:latest
+FROM debian:bookworm-slim
 
-WORKDIR /build
+WORKDIR /app
 
 RUN apt-get update
 RUN apt-get install -y openvpn \
@@ -9,16 +9,14 @@ RUN apt-get install -y openvpn \
                        apt-utils \
                        procps \
                        systemd \
-                       net-tools \
-                       less \
-                       nano
+                       net-tools
 
 RUN wget -O openvpn.sh https://get.vpnsetup.net/ovpn
 RUN chmod +x openvpn.sh
 
 COPY entrypoint.sh .
 
-ENTRYPOINT [ "/build/entrypoint.sh" ]
+ENTRYPOINT [ "/app/entrypoint.sh" ]
 
 
                     

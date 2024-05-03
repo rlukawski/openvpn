@@ -6,11 +6,11 @@ volumes:
 
 services:
   openvpn:
-    image: test
+    image: rlukawski/openvpn:latest
     privileged: true
     build:
       context: .
-      dockerfile: ./Dockerfile    
+      dockerfile: ./Dockerfile
     volumes:
       - openvpn:/etc/openvpn
     ports:
