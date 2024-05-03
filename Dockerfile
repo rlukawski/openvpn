@@ -9,7 +9,8 @@ RUN apt-get install -y openvpn \
                        apt-utils \
                        procps \
                        systemd \
-                       net-tools
+                       net-tools \
+                       iptables
 
 RUN wget -O openvpn.sh https://get.vpnsetup.net/ovpn
 RUN chmod +x openvpn.sh
