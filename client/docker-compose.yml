@@ -22,3 +22,4 @@ services:
       dockerfile: ./Dockerfile
     environment:
       - WIFI_PASSWORD=${WIFI_PASSWORD}
+      - WIFI_NAME=${WIFI_NAME}

@@ -1,7 +1,7 @@
 country_code=PL
 interface=wlan0
 driver=nl80211
-ssid=UPC12UK
+ssid=${WIFI_NAME}
 ieee80211n=1 
 ieee80211ac=1
 require_ht=1
