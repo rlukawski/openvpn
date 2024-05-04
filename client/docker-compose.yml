@@ -11,7 +11,15 @@ services:
     platform: linux/arm64
     
     build:
-      context: .
+      context: ./openvpn
       dockerfile: ./Dockerfile
     volumes:
       - /etc/openvpn/client:/etc/openvpn/client
+
+  hostapd-client:
+    image: rlukawski/hostapd-client:latest
+    privileged: true
+    platform: linux/arm64
+    build:
+      context: ./hostapd
+      dockerfile: ./Dockerfile
