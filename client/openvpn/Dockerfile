@@ -5,14 +5,7 @@ WORKDIR /app
 RUN apt-get update
 RUN apt-get install -y \
     openvpn \
-    iptables 
-
-RUN apt-get install -y \
-    iputils-ping \
-    nano \
-    net-tools \
-    procps \
-    telnet                        
+    iptables                    
 
 COPY entrypoint.sh ./
 
