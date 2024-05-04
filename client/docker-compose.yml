@@ -1,9 +1,5 @@
 version: '3.8'
 
-volumes:
-  config:
-    external: false
-
 services:
   openvpn-client:
     image: rlukawski/openvpn-client:latest
