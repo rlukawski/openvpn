@@ -32,7 +32,7 @@ networks:
   vlan:
     driver: macvlan
     driver_opts:
-      parent: wlan0  
+      parent: eth0  
     ipam:
       config:
         - subnet: 192.168.5.0/24
