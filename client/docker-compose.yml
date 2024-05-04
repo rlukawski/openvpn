@@ -20,3 +20,5 @@ services:
     build:
       context: ./hostapd
       dockerfile: ./Dockerfile
+    environment:
+      - WIFI_PASSWORD=${WIFI_PASSWORD}

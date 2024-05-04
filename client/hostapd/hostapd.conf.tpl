@@ -14,7 +14,7 @@ ignore_broadcast_ssid=0
 
 #security
 wpa=2
-wpa_passphrase=Blekota13!
+wpa_passphrase=${WIFI_PASSWORD}
 wpa_key_mgmt=WPA-PSK
 wpa_pairwise=TKIP
 rsn_pairwise=CCMP
