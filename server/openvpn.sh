@@ -5,6 +5,7 @@
 # Based on the work of Nyr and contributors at:
 # https://github.com/Nyr/openvpn-install
 #
+# Copyright (c) 2024 Rafał Łukawski <rs.lukawski@gmail.com>
 # Copyright (c) 2022-2024 Lin Song <linsongui@gmail.com>
 # Copyright (c) 2013-2023 Nyr
 #
