@@ -9,7 +9,7 @@ services:
     image: rlukawski/openvpn-client:latest
     privileged: true
     platform: linux/arm64
-    
+    network_mode: host
     build:
       context: ./openvpn
       dockerfile: ./Dockerfile
@@ -20,21 +20,7 @@ services:
     image: rlukawski/hostapd-client:latest
     privileged: true
     platform: linux/arm64
+    network_mode: host
     build:
       context: ./hostapd
       dockerfile: ./Dockerfile
-    networks:
-      vlan:
-        ipv4_address: 192.168.5.2
-    
-
-networks:
-  vlan:
-    driver: macvlan
-    driver_opts:
-      parent: wlan0  
-    ipam:
-      config:
-        - subnet: 192.168.5.0/24
-          gateway: 192.168.5.1
-          ip_range: 192.168.5.0/24    

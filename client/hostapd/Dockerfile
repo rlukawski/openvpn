@@ -17,4 +17,3 @@ COPY hostapd.conf /etc/hostapd
 COPY entrypoint.sh ./
 
 ENTRYPOINT [ "/app/entrypoint.sh" ]
-# ENTRYPOINT [ "/bin/bash" ]
