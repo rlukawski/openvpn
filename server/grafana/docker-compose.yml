@@ -30,6 +30,7 @@ services:
 
   grafana-nginx:
     image: rlukawski/grafana-nginx:latest
+    network_mode: host
     volumes:
       - certs:/etc/letsencrypt/
     build:
