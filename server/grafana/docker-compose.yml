@@ -1,0 +1,29 @@
+version: '3.8'
+
+volumes:
+  certs:
+    external: false
+
+services:
+  grafana:
+    image: rlukawski/grafana:latest
+    build:
+      context: ./grafana
+      dockerfile: ./Dockerfile
+    # volumes:
+    #   - openvpn:/etc/openvpn
+    # ports:
+    #   - "3000:3000"
+
+  nginx:
+    image: rlukawski/grafana-nginx:latest
+    volumes:
+      - certs:/etc/letsencrypt/
+    build:
+      context: ./nginx/
+      dockerfile: ./Dockerfile
+    ports:
+      - 443:443
+    depends_on:
+      - grafana
+            
