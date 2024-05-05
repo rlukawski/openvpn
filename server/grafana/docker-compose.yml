@@ -1,22 +1,8 @@
-version: '3.8'
+version: "3.8"
 
 volumes:
   certs:
     external: false
-  openvpn:
-    external: false
-
-services:
-  openvpn:
-    image: rlukawski/openvpn:latest
-    privileged: true
-    build:
-      context: ./openvpn
-      dockerfile: ./Dockerfile
-    volumes:
-      - openvpn:/etc/openvpn
-    ports:
-      - "1194:1194/udp"
 
   grafana:
     image: rlukawski/grafana:latest
@@ -36,4 +22,3 @@ services:
       - 443:443
     depends_on:
       - grafana
-            
