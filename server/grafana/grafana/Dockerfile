@@ -10,7 +10,8 @@ RUN echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com 
 RUN apt-get update
 RUN apt-get install -y grafana
 
-COPY entrypoint.sh grafana.add.ini ./
+COPY entrypoint.sh ./
+COPY grafana.ini /etc/grafana/
 EXPOSE 3000
 
 ENTRYPOINT ["/app/entrypoint.sh"]
