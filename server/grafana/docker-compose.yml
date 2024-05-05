@@ -8,15 +8,12 @@ volumes:
 
 services:
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v2.45.5
 
   grafana:
     image: grafana/grafana:10.4.2
     volumes:
       - grafana:/var/lib/grafana
-    # build:
-    #   context: ./grafana
-    #   dockerfile: ./Dockerfile
 
   grafana-nginx:
     image: rlukawski/grafana-nginx:latest
