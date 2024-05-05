@@ -3,19 +3,28 @@ version: '3.8'
 volumes:
   certs:
     external: false
+  openvpn:
+    external: false
 
 services:
+  openvpn:
+    image: rlukawski/openvpn:latest
+    privileged: true
+    build:
+      context: ./openvpn
+      dockerfile: ./Dockerfile
+    volumes:
+      - openvpn:/etc/openvpn
+    ports:
+      - "1194:1194/udp"
+
   grafana:
     image: rlukawski/grafana:latest
     build:
       context: ./grafana
       dockerfile: ./Dockerfile
-    # volumes:
-    #   - openvpn:/etc/openvpn
-    # ports:
-    #   - "3000:3000"
 
-  nginx:
+  grafana-nginx:
     image: rlukawski/grafana-nginx:latest
     volumes:
       - certs:/etc/letsencrypt/
