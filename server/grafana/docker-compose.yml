@@ -10,6 +10,8 @@ services:
   node-exporter:
     image: prom/node-exporter:v1.3.1
     network_mode: host
+    command:
+      - '--web.listen-address=127.0.0.1:9100'    
 
   prometheus:
     image: rlukawski/prometheus:latest
