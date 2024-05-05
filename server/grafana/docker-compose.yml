@@ -4,6 +4,7 @@ volumes:
   certs:
     external: false
 
+services:
   grafana:
     image: rlukawski/grafana:latest
     build:
@@ -15,7 +16,7 @@ volumes:
     volumes:
       - certs:/etc/letsencrypt/
     build:
-      context: ./nginx/
+      context: ./nginx
       dockerfile: ./Dockerfile
     ports:
       - 80:80
