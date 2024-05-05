@@ -3,15 +3,17 @@ version: "3.8"
 volumes:
   certs:
     external: false
+  grafana:
+    external: false
 
 services:
   prometheus:
     image: prom/prometheus:latest
-    # ports:
-    #   - 9090:9090
 
   grafana:
     image: rlukawski/grafana:latest
+    volumes:
+      - grafana:/var/lib/grafana
     build:
       context: ./grafana
       dockerfile: ./Dockerfile
