@@ -11,12 +11,12 @@ services:
     image: prom/prometheus:latest
 
   grafana:
-    image: rlukawski/grafana:latest
+    image: grafana/grafana:10.4.2
     volumes:
       - grafana:/var/lib/grafana
-    build:
-      context: ./grafana
-      dockerfile: ./Dockerfile
+    # build:
+    #   context: ./grafana
+    #   dockerfile: ./Dockerfile
 
   grafana-nginx:
     image: rlukawski/grafana-nginx:latest
