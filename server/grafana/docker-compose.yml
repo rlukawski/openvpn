@@ -3,7 +3,7 @@ version: "3.8"
 volumes:
   certs:
     external: false
-  grafana:
+  grafana-data:
     external: false
 
 services:
@@ -13,7 +13,7 @@ services:
   grafana:
     image: grafana/grafana:10.4.2
     volumes:
-      - grafana:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
 
   grafana-nginx:
     image: rlukawski/grafana-nginx:latest
