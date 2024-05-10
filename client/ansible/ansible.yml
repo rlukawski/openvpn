@@ -14,9 +14,14 @@
 
     - name: Copy entrypoint script
       copy:
-        src: ./entrypoint.sh
-        dest: /usr/local/bin/entrypoint.sh
+        src: ./prestart.sh
+        dest: /usr/local/bin/openvpn-prestart.sh
         mode: '0755'
+
+    - name: Copy openvpn.conf
+      copy:
+        src: ./client.conf
+        dest: /etc/openvpn/client/client.conf
 
     - name: Copy openvpn configuration file
       copy:
@@ -29,9 +34,12 @@
         state: directory
         mode: '0755'
 
+    - name: Execute custom script
+      script: /usr/local/bin/openvpn-prestart.sh
+
     - name: Set up OpenVPN service
       systemd:
-        name: openvpn@test
+        name: openvpn-uk@client
         enabled: yes
         state: started
         daemon_reload: yes
