@@ -1,0 +1,42 @@
+- hosts: vpn-client
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - openvpn
+          - iptables
+        state: present
+
+    - name: Copy entrypoint script
+      copy:
+        src: ./entrypoint.sh
+        dest: /usr/local/bin/entrypoint.sh
+        mode: '0755'
+
+    - name: Copy openvpn configuration file
+      copy:
+        src: ./openvpn-uk@client.service
+        dest: /etc/systemd/system/
+
+    - name: Ensure OpenVPN directory exists
+      file:
+        path: /etc/openvpn/client
+        state: directory
+        mode: '0755'
+
+    - name: Set up OpenVPN service
+      systemd:
+        name: openvpn@test
+        enabled: yes
+        state: started
+        daemon_reload: yes
+      when: ansible_service_mgr == "systemd"
+
+    - name: Configure OpenVPN to start on boot
+      shell: systemctl enable openvpn-uk@client
+      when: ansible_service_mgr == "systemd"
