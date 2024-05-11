@@ -41,5 +41,5 @@
   when: ansible_service_mgr == "systemd"
 
 - name: Configure OpenVPN to start on boot
-  shell: systemctl enable openvpn-uk@client
+  shell: systemctl enable openvpn-client
   when: ansible_service_mgr == "systemd"
