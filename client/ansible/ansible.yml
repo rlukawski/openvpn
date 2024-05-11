@@ -12,17 +12,6 @@
           - iptables
         state: present
 
-    - name: Copy entrypoint script
-      copy:
-        src: ./prestart.sh
-        dest: /usr/local/bin/openvpn-prestart.sh
-        mode: '0755'
-
-    - name: Copy openvpn.conf
-      copy:
-        src: ./client.conf
-        dest: /etc/openvpn/client/client.conf
-
     - name: Copy openvpn configuration file
       copy:
         src: ./openvpn-uk@client.service
@@ -34,12 +23,21 @@
         state: directory
         mode: '0755'
 
-    - name: Execute custom script
-      script: /usr/local/bin/openvpn-prestart.sh
+    - name: Copy openvpn configuration file
+      copy:
+        src: ./client.conf
+        dest: /etc/openvpn/client/
+
+    - name: Add specific routes to OpenVPN configuration
+      lineinfile:
+        path: /etc/openvpn/client/client.conf
+        line: 'route 62.179.1.0 255.255.255.0 net_gateway'
+        create: yes
+        state: present
 
     - name: Set up OpenVPN service
       systemd:
-        name: openvpn-uk@client
+        name: openvpn-uk@client.service
         enabled: yes
         state: started
         daemon_reload: yes
