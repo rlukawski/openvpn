@@ -687,6 +687,7 @@ ssbzSibBsu/6iGtCOGEoXJf//////////wIBAg==
 	# Generate server.conf
 	echo "#local $ip
 mssfix 1400
+duplicate-cn
 port $port
 proto $protocol
 dev tun
