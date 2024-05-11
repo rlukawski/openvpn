@@ -29,7 +29,7 @@
 
 - name: Configure DHCP Server
   ansible.builtin.lineinfile:
-    path: /path/to/your/file.conf
+    path: /etc/NetworkManager/dnsmasq.d/hostapd
     line: "{{ item }}"
     create: yes
   loop:
