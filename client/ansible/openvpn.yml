@@ -11,7 +11,7 @@
 
 - name: Copy openvpn configuration file
   copy:
-    src: ./openvpn-uk@client.service
+    src: ./openvpn-client.service
     dest: /etc/systemd/system/
 
 - name: Ensure OpenVPN directory exists
@@ -34,7 +34,7 @@
 
 - name: Set up OpenVPN service
   systemd:
-    name: openvpn-uk@client.service
+    name: openvpn-client.service
     enabled: yes
     state: started
     daemon_reload: yes

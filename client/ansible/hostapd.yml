@@ -1,0 +1,41 @@
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install required packages
+  apt:
+    name:
+      - hostapd
+    state: present
+
+- name: Set WIFI_NAME from environment variable
+  set_fact:
+    wifi_name: "{{ lookup('env', 'WIFI_NAME') }}"
+    wifi_password: "{{ lookup('env', 'WIFI_PASSWORD') }}"
+
+
+- name: Generate hostapd configuration file using template
+  ansible.builtin.template:
+    src: hostapd.conf.tpl
+    dest: /etc/hostapd/hostapd.conf
+
+- name: Unmask hostapd service
+  become: yes
+  systemd:
+    name: hostapd
+    masked: no
+    daemon_reload: yes
+
+- name: Enable and start hostapd service
+  become: yes
+  systemd:
+    name: hostapd
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: Ensure hostapd is enabled at boot
+  become: yes
+  systemd:
+    name: hostapd
+    enabled: yes

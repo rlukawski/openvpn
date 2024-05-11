@@ -1,0 +1,16 @@
+- name: Add configuration for wlan0 to /etc/network/interfaces
+  ansible.builtin.lineinfile:
+    path: /etc/network/interfaces
+    line: "{{ item }}"
+    insertafter: EOF
+  loop:
+    - "allow-hotplug wlan0"
+    - "iface wlan0 inet static"
+    - "  address 192.168.1.1"
+    - "  netmask 255.255.255.0"
+  notify: Restart networking
+
+
+- name: Restart networking
+  ansible.builtin.command: systemctl restart networking
+

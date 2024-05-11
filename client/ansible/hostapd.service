@@ -1,0 +1,19 @@
+[Unit]
+Description=Hostapd service
+Before=systemd-user-sessions.service
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+
+[Service]
+WorkingDirectory=/etc/hostapd
+ExecStart=/usr/sbin/hostapd -d /etc/hostapd/hostapd.conf
+ExecStop=/bin/kill -SIGTERM $MAINPID
+PIDFile=/run/hostapd/%i.pid
+KillMode=process
+TimeoutStartSec=0
+Restart=on-failure
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target
