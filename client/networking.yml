@@ -27,6 +27,16 @@
     value: dnsmasq
     backup: yes
 
+- name: Configure DHCP Server
+  ansible.builtin.lineinfile:
+    path: /path/to/your/file.conf
+    line: "{{ item }}"
+    create: yes
+  loop:
+    - 'interface=wlan0'
+    - 'dhcp-range=192.168.1.50,192.168.1.150,12h'
+    - 'bind-interfaces'
+
 - name: Restart networking
   ansible.builtin.command: systemctl restart networking
 
