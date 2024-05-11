@@ -19,6 +19,13 @@
     mode: '0755'
   become: yes
 
+- name: Add dns=dnsmasq to NetworkManager.conf
+  ansible.builtin.lineinfile:
+    path: /etc/NetworkManager/NetworkManager.conf
+    regexp: '^\[main\]'
+    insertafter: '^\[main\]'
+    line: 'dns=dnsmasq'
+
 - name: Restart networking
   ansible.builtin.command: systemctl restart networking
 
