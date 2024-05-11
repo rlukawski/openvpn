@@ -10,6 +10,14 @@
     - "  netmask 255.255.255.0"
   notify: Restart networking
 
+- name: Create startup script for iptables rule
+  copy:
+    dest: /etc/network/if-up.d/iptables-rules
+    content: |
+      #!/bin/sh
+      iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
+    mode: '0755'
+  become: yes
 
 - name: Restart networking
   ansible.builtin.command: systemctl restart networking
