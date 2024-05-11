@@ -10,12 +10,13 @@
     - "  netmask 255.255.255.0"
   notify: Restart networking
 
-- name: Create startup script for iptables rule
+- name: Create startup script for networking
   copy:
-    dest: /etc/network/if-up.d/iptables-rules
+    dest: /etc/network/if-up.d/hostapd
     content: |
       #!/bin/sh
       iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
+      sysctl net.ipv4.ip_forward=1
     mode: '0755'
   become: yes
 
