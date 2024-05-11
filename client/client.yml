@@ -1,4 +1,4 @@
-- hosts: vpn-client
+- hosts: vpnclient
   become: yes
   tasks:
     - include_tasks: openvpn.yml
