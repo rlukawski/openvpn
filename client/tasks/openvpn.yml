@@ -9,9 +9,9 @@
       - iptables
     state: present
 
-- name: Copy openvpn configuration file
+- name: Copy openvpn service file
   copy:
-    src: ./openvpn-client.service
+    src: services/openvpn-client.service
     dest: /etc/systemd/system/
 
 - name: Ensure OpenVPN directory exists
