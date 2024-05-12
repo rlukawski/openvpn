@@ -9,11 +9,6 @@
       - iptables
     state: present
 
-- name: Copy openvpn service file
-  copy:
-    src: services/openvpn-client.service
-    dest: /etc/systemd/system/
-
 - name: Ensure OpenVPN directory exists
   file:
     path: /etc/openvpn/client
@@ -32,14 +27,23 @@
     create: yes
     state: present
 
-- name: Set up OpenVPN service
+- name: Unmask openvpn-client service
+  become: yes
   systemd:
-    name: openvpn-client.service
+    name: openvpn-client
+    masked: no
+    daemon_reload: yes
+
+- name: Enable and start openvpn-client service
+  become: yes
+  systemd:
+    name: openvpn-client
     enabled: yes
     state: started
     daemon_reload: yes
-  when: ansible_service_mgr == "systemd"
 
-- name: Configure OpenVPN to start on boot
-  shell: systemctl enable openvpn-client
-  when: ansible_service_mgr == "systemd"
+- name: Ensure openvpn-client is enabled at boot
+  become: yes
+  systemd:
+    name: openvpn-client
+    enabled: yes
