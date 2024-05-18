@@ -14,6 +14,7 @@
   copy:
     dest: /etc/network/if-up.d/hostapd
     content: |
+      #!/bin/bash
       if [ "$IFACE" = "tun0" ]; then
         iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE
         sysctl net.ipv4.ip_forward=1
